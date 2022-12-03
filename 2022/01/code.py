@@ -23,15 +23,14 @@ for line in input:
 
 # Use the max() method to get max calories from the list
 maxCalories = max(elfList)
-print('Max calories: {}'.format(maxCalories))
-# Get the index of the elf with the most calories
-elfNo = elfList.index(maxCalories)
-print("Index with max calories: {}".format(elfList[elfNo]))
-print("Calories carried on index {} : {}".format(elfNo,elfList[elfNo]))
 
 # Print the number of the elf carrying the most calories.
-print("Part One : "+ str(elfNo))
+print("Part One : "+ str(maxCalories))
 
 #Part One
+# Sort the list
+elfList.sort(reverse=True)
+# Add values for the top 3 indexes.
+topElves = elfList[0] + elfList[1] + elfList [2]
 
-print("Part Two : "+ str(None))
+print("Part Two : "+ str(topElves))
