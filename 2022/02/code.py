@@ -5,70 +5,80 @@
 with open((__file__.rstrip("code.py")+"input.txt"), 'r') as input_file:
     input = input_file.read().splitlines()
 
-'''
-A - ROCK
-B - PAPER
-C - SCISSORS
-X - ROCK - 1 point
-Y - PAPER - 2 points
-Z - SCISSORS - 3 points
+# Initialize roundOneScore
+partOneScore = 0
 
-WIN - 6
-DRAW - 3
-LOOSE - 0
-'''
+hands = {
+    "A":"ROCK",
+    "B":"PAPER",
+    "C":"SCISSORS",
+    "ROCK":"X",
+    "PAPER":"Y",
+    "SCISSORS":"Z"
+}
 
-totalScore = 0
+
+scores = {
+    "ROCK": 1,
+    "PAPER": 2,
+    "SCISSORS": 3
+}
+
+winList = [
+    "A Y",
+    "B Z",
+    "C X"
+]
+
+# Draw combos
+drawList = [
+    "A X",
+    "B Y",
+    "C Z"
+]
+
+def scoreRound(line):
+    roundScore = 0
+    # Did we win?
+    if line in winList:
+        roundScore += 6 
+    elif line in drawList:
+        roundScore += 3
+    else:
+        roundScore += 0
+
+    # Score our pick
+    roundScore += scores[hands[line[2]]]
+
+    return roundScore
+
+def scorePartTwo(line):
+    roundScore = 0
+    if line[2] == 'X':
+        # Loose
+        roundScore += 0
+        # What do we need to play to loose?
+        wePlay = hands["X"] 
+    elif line[2] == 'Y':
+        # Draw
+        roundScore += 3
+        # We need to play the same hand back
+        
+
+    elif line[2] == 'Z':
+        # Win
+        roundScore += 6
+        # We need to beat the 
+        
 
 for line in input:
 
 #Part One
+    partOneScore += scoreRound(line)    
 
-    # Reset roundScore
-    roundScore = 0
-    
-    # Only need lists for 2 of 3 outcomes 
-    # Winning combos
-    winList = [
-        "A Z",
-        "B X",
-        "C Y"
-    ]
+print("Part One : "+ str(partOneScore))
 
-    # Draw combos
-    drawList = [
-        "A X",
-        "B Y",
-        "C Z"
-    ]
+#Part Two
 
-    # Did we win_
-    if line in winList:
-        roundScore += 6 
-        print("We won!")
-    elif line in drawList:
-        roundScore += 3
-        print("Draw...")
-    else:
-        print("We lost :(")
-
-    # Score our pick
-    if line[2] == 'X':
-        roundScore += 1
-        print("We picked rock. Add 1 to the score")
-    elif line[2] == 'Y':
-        roundScore += 2
-        print("We picked paper. Add 2 to the score")
-    elif line[2] == 'Z':
-        roundScore += 3
-        print("We picked scissors. Add 3 to the score")
-    
-    print("Round score: {}".format(str(roundScore)))
-    totalScore += roundScore
-    print("Our total score is now: {}".format(str(totalScore)))
-
-print("Part One : "+ str(totalScore))
-
-#Part One
 
 print("Part Two : "+ str(None))
