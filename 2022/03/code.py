@@ -29,9 +29,6 @@ for line in input:
     for char in commonChars:
         ruckSackPriority += charPri[char]
 
-# Split lines
-# Find common items
-# Assign value and sum
 
 print("Part One : "+ str(ruckSackPriority))
 
