@@ -2,32 +2,30 @@
 # Author = Bj�rn Gustav Baklid
 # Date = December 2018
 
-import re
 
 with open((__file__.rstrip("code.py")+"input.txt"), 'r') as input_file:
     input = input_file.read().splitlines()
 
-# Split sections into sets
-regex = r"(\d+)-(\d+),(\d+)-(\d+)"
 
+
+contained = 0
 overlap = 0
 for line in input:
-    #print("Processing {}".format(line))
-    matches = re.findall(regex, line)[0]
-    elf1Start = matches[0]
-    elf1End = matches[1]
-    elf2Start = matches[2]
-    elf2End = matches[3]
+    # ditched regex and stole string split from someone else.
+    elf1,elf2=line.split(",")
+    elf1Start,elf1End = [int(r) for r in elf1.split("-")]
+    elf2Start,elf2End = [int(r) for r in elf2.split("-")]
 
     # Check if either range is contained in the other
     if (elf1Start <= elf2Start) and (elf1End >= elf2End):
-        overlap += 1
+        contained += 1
     elif (elf2Start <= elf1Start) and (elf2End >= elf1End):
-        overlap += 1
+        contained += 1
+    elif  ()
 
 #Part One
 
-print("Part One : "+ str(overlap))
+print("Part One : "+ str(contained))
 
 #Part One
 
